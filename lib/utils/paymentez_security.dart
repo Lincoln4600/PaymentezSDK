@@ -36,6 +36,7 @@ class PaymentezSecurity {
   ///
   /// Necesita el número de tarjeta sin espacios ni guion
   static bool validCardLuhn(String numCard) {
+
     var sum = 0;
     final length = numCard.length;
     for (var i = 0; i < length; i++) {

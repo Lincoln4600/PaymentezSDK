@@ -45,7 +45,20 @@ class PaymentezValidate {
   /// para obtener informacion respecto a la tarjeta se debe colocar los
   /// 6 primeros digitos de la tarjeta caso contrario retorna null
   static CardInfo getCarInfo(String numCardLenth6) {
-    CardInfo cardInfo;
+    var cardInfo = CardInfo(
+      type: 'err',
+      typeCard: PaymentezValidate.getTypeCard('err'),
+      fullName: PaymentezValidate.getFullNameTypeCard('err'),
+      spacingPatterns: PaymentezValidate.getSpacingPatternsCard('err'),
+      cvvLength: PaymentezValidate.getCVVlenngth('err'),
+      colorHex: PaymentezValidate.getColorCard('err'),
+      numCardFormated: PaymentezValidate.getNumCardFormated(
+        '',
+        numCardLenth6,
+        'xxxx',
+      ),
+    );
+
     var name = _noSupport;
     if (numCardLenth6.length < 6) {
       throw Exception('''

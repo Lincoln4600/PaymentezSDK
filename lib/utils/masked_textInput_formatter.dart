@@ -3,8 +3,8 @@ import 'package:flutter/services.dart';
 
 class MaskedTextInputFormatter extends TextInputFormatter {
   MaskedTextInputFormatter({
-    @required this.mask,
-    @required this.separator,
+    required this.mask,
+    required this.separator,
   }) {
     assert(mask != null);
     assert(separator != null);
@@ -34,7 +34,7 @@ class MaskedTextInputFormatter extends TextInputFormatter {
   }
 
   static String applyFormat(String value,
-      {@required String mask, @required String separator, bool force = false}) {
+      {required String mask, required String separator, bool force = false}) {
     var val = '';
     var newMask = mask;
     for (var i = 0; i < value.length; i++) {
@@ -62,7 +62,7 @@ class UpperCaseTextInputFormatter extends TextInputFormatter {
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
     return TextEditingValue(
-      text: newValue.text?.toUpperCase(),
+      text: newValue.text.toUpperCase(),
       selection: newValue.selection,
     );
   }

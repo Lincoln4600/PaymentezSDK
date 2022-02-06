@@ -13,16 +13,14 @@ import 'package:paymentez/utils/paymentez_security.dart';
 import 'package:http/http.dart' as http;
 import 'package:paymentez/models/cardPay.dart';
 import 'package:paymentez/utils/validator.dart';
-
-
 part 'services/paymentez_services.dart';
 
 class Paymentez {
   Paymentez._();
   static final _instance = Paymentez._();
-  static PaymentezRepositoryInterface _paymentezRepositoryInterface;
+  static PaymentezRepositoryInterface? _paymentezRepositoryInterface;
 
-  static Paymentez instance({ConfigAuthorization configAuthorization}) {
+  static Paymentez instance({required ConfigAuthorization configAuthorization}) {
     _paymentezRepositoryInterface = _PaymentezServices(configAuthorization);
     return _instance;
   }
@@ -50,11 +48,11 @@ class Paymentez {
   /// ```
   ///
   Future<PaymentezResp> addCard({
-    @required String sessionId,
-    @required UserPay user,
-    @required CardPay card,
+    required String sessionId,
+    required UserPay user,
+    required CardPay card,
   }) async {
-    return await _paymentezRepositoryInterface.addCard(
+    return await _paymentezRepositoryInterface!.addCard(
       user: user,
       card: card,
       sessionId: sessionId,
@@ -62,11 +60,11 @@ class Paymentez {
   }
 
   Future<PaymentezResp> getAllCards(String userId) async {
-    return await _paymentezRepositoryInterface.getAllCards(userId);
+    return await _paymentezRepositoryInterface!.getAllCards(userId);
   }
 
   Future<PaymentezResp> delCard(String userId, String tokenCard) async {
-    return await _paymentezRepositoryInterface.delCard(
+    return await _paymentezRepositoryInterface!.delCard(
       userId: userId,
       tokenCard: tokenCard,
     );
@@ -74,20 +72,20 @@ class Paymentez {
 
   Future<PaymentezResp> infoTransaction(
       String userId, String transactionId) async {
-    return await _paymentezRepositoryInterface.infoTransaction(
+    return await _paymentezRepositoryInterface!.infoTransaction(
       userId: userId,
       transactionId: transactionId,
     );
   }
 
   Future<PaymentezResp> verify({
-    @required String userId,
-    @required String transactionId,
-    @required String type,
-    @required String value,
-    @required bool moreInfo,
+    required String userId,
+    required String transactionId,
+    required String type,
+    required String value,
+    required bool moreInfo,
   }) async {
-    return await _paymentezRepositoryInterface.verify(
+    return await _paymentezRepositoryInterface!.verify(
       userId: userId,
       transactionId: transactionId,
       type: type,
@@ -153,11 +151,11 @@ class Paymentez {
   /// );
   /// ```
   Future<PaymentezResp> debitToken({
-    @required UserPay user,
-    @required CardPay card,
-    @required OrderPay orderPay,
+    required UserPay user,
+    required CardPay card,
+    required OrderPay orderPay,
   }) async {
-    return await _paymentezRepositoryInterface.debitToken(
+    return await _paymentezRepositoryInterface!.debitToken(
       user: user,
       card: card,
       orderPay: orderPay,
@@ -168,10 +166,10 @@ class Paymentez {
 class ConfigAuthorization {
   ConfigAuthorization({
     this.production = false,
-    @required this.appCode,
-    @required this.appClientKey,
-    @required this.appCodeSERVER,
-    @required this.appClientKeySERVER,
+    required this.appCode,
+    required this.appClientKey,
+    required this.appCodeSERVER,
+    required this.appClientKeySERVER,
     this.isLogServe = false,
     this.enableTracking = false,
     this.urlLogServe,
@@ -185,8 +183,8 @@ class ConfigAuthorization {
   final String appClientKeySERVER;
   final bool isLogServe;
   final bool enableTracking;
-  final String urlLogServe;
-  final Map<String, String> headers;
+  final String? urlLogServe;
+  final Map<String, String>? headers;
 
   String getHost() {
     return production

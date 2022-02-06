@@ -18,17 +18,19 @@ class CardPay {
   const CardPay({
     this.bin,
     this.status,
-    this.token,
     this.holderName,
     this.expiryMonth,
     this.expiryYear,
     this.transactionReference,
-    this.type,
     this.number,
     this.origin,
     this.cardInfo,
     this.cvc,
+    this.token,
+    this.type,
     this.statusEs,
+
+
     this.message,
   });
 
@@ -52,20 +54,20 @@ class CardPay {
   }
 
   CardPay copyWith({
-    String bin,
-    String status,
-    String token,
-    String holderName,
-    int expiryMonth,
-    int expiryYear,
-    String transactionReference,
-    String type,
-    String number,
-    String origin,
-    CardInfo cardInfo,
-    String cvc,
-    String statusEs,
-    String message,
+    String? bin,
+    String? status,
+    String? token,
+    String? holderName,
+    int? expiryMonth,
+    int? expiryYear,
+    String? transactionReference,
+    String? type,
+    String? number,
+    String? origin,
+    CardInfo? cardInfo,
+    String? cvc,
+    String? statusEs,
+    String? message,
   }) =>
       CardPay(
         bin: bin ?? this.bin,
@@ -85,27 +87,27 @@ class CardPay {
       );
 
   /// propertys Paymentez
-  final String bin;
-  final String status;
-  final String token;
-  final String holderName;
-  final int expiryMonth;
-  final int expiryYear;
-  final String transactionReference;
-  final String type;
-  final String number;
-  final String origin;
+  final String? bin;
+  final String? status;
+  final String? holderName;
+  final int? expiryMonth;
+  final int? expiryYear;
+  final String? transactionReference;
+  final String? type;
+  final String? number;
+  final String? origin;
+  final String? token;
 
   /// propertys View
-  final CardInfo cardInfo;
+  final CardInfo? cardInfo;
 
   /// for use model
-  final String cvc;
-  final String statusEs;
-  final String message;
+  final String? cvc;
+  final String? statusEs;
+  final String? message;
 
   List<CardPay> getList(dynamic cards) {
-    List listCards;
+    List<CardPay> listCards = [];
     for (final item in cards) listCards.add(CardPay.fromJson(item));
     return listCards;
   }
@@ -136,7 +138,7 @@ class CardPay {
         'type': type,
         'number': number,
         'origin': origin,
-        'cardInfo': cardInfo.toJson(),
+        'cardInfo': cardInfo?.toJson(),
         'cvc': cvc,
         'statusEs': statusEs,
         'message': message,
@@ -145,9 +147,9 @@ class CardPay {
 
 class CardInfo {
   CardInfo({
-    this.type,
-    this.typeCard,
-    this.fullName,
+    required this.type,
+    required this.typeCard,
+    required this.fullName,
     this.spacingPatterns,
     this.cvvLength,
     this.colorHex,
@@ -175,10 +177,10 @@ class CardInfo {
   final String type;
   final TypeCard typeCard;
   final String fullName;
-  final String spacingPatterns;
-  final int cvvLength;
-  final int colorHex;
-  final String numCardFormated;
+  final String? spacingPatterns;
+  final int? cvvLength;
+  final int? colorHex;
+  final String? numCardFormated;
 
   Map<String, dynamic> toJson() => {
         'type': type,
