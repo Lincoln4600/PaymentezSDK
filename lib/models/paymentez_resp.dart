@@ -49,7 +49,7 @@ class PaymentezResp {
     dynamic data;
 
     if (map.containsKey('cards')) {
-      final lista = List.from(map!['cards']);
+      final lista = List.from(map['cards']);
       if (lista.isEmpty) {
         status = StatusResp.notFound;
         message = 'No tienen ninguna tarjeta registrada';
