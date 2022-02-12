@@ -40,7 +40,7 @@ enum StatusResp {
 }
 
 class PaymentezResp {
-  PaymentezResp({this.status, this.message, this.data});
+  PaymentezResp({this.status, this.message, this.data, this.map});
 
   factory PaymentezResp.fromJson(dynamic dat) {
     Map<String, dynamic> map = Map<String, dynamic>.from(json.decode(dat));
@@ -137,12 +137,10 @@ class PaymentezResp {
     }
 
     return PaymentezResp(
-      status: status,
-      message: message,
-      data: data,
-    );
+        status: status, message: message, data: data, map: map);
   }
 
+  final Map<String, dynamic>? map;
   final StatusResp? status;
   final String? message;
   final dynamic data;
