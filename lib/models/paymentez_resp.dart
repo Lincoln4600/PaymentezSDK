@@ -43,13 +43,13 @@ class PaymentezResp {
   PaymentezResp({this.status, this.message, this.data});
 
   factory PaymentezResp.fromJson(dynamic dat) {
-    String? map = Map<String, dynamic>.from(json.decode(dat));
+    Map<String, dynamic> map = Map<String, dynamic>.from(json.decode(dat));
     StatusResp status = StatusResp.notFound;
     String? message = '';
     dynamic data;
 
     if (map.containsKey('cards')) {
-      final lista = List.from(map['cards']);
+      final lista = List.from(map!['cards']);
       if (lista.isEmpty) {
         status = StatusResp.notFound;
         message = 'No tienen ninguna tarjeta registrada';
