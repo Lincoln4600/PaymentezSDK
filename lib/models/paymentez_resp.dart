@@ -43,7 +43,7 @@ class PaymentezResp {
   PaymentezResp({this.status, this.message, this.data});
 
   factory PaymentezResp.fromJson(dynamic dat) {
-    final map = Map<String, dynamic>.from(json.decode(dat));
+    String? map = Map<String, dynamic>.from(json.decode(dat));
     StatusResp status = StatusResp.notFound;
     String? message = '';
     dynamic data;
